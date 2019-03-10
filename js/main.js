@@ -24,6 +24,18 @@ let dayValue = document.querySelector('.day-value');
 
 let money, time;
 
+expensesBtn.disablet = true;
+optionalExpensesBtn.disablet = true;
+countBtn.disablet = true;
+
+function checkInputData (incomingArr) {
+    for (let i = 0; i < incomingArr.length; i++) {
+        if (incomingArr[i].value == '') {
+            return true;
+        }
+    }
+    return false;
+}
 
 Btnstart.addEventListener('click', function () {
     time = prompt('Введите дату в формате YYYY-MM-DD', '');
@@ -38,12 +50,15 @@ Btnstart.addEventListener('click', function () {
     yearValue.value = new Date(Date.parse(time)).getFullYear();
     monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
     dayValue.value = new Date(Date.parse(time)).getDate();
+    expensesBtn.disablet = false;
+    optionalExpensesBtn.disablet = false;
+    countBtn.disablet = false;
 
 });
 
 expensesBtn.addEventListener('click', function () {
-
-    let sum = 0;
+    if (checkInputData(expensesItem) == false) {
+         let sum = 0;
     for (let i = 0; i < expensesItem.length; i++) {
         let a = expensesItem[i].value,
             b = expensesItem[++i].value;
@@ -57,17 +72,24 @@ expensesBtn.addEventListener('click', function () {
             i = i - 1;
         }
     }
-    expensesValue.textContent = sum;
+    expensesValue.textContent = sum;  
+
+    } else {
+         expensesValue.textContent = "Нестаточно данных";
+    }
 });
 
 optionalExpensesBtn.addEventListener('click', function () {
-    for (let i = 0; i < optionalexpensesItem.length; i++) {
+    if (checkInputData(optionalexpensesItem) ===false){
+      for (let i = 0; i < optionalexpensesItem.length; i++) {
         let opt = optionalexpensesItem[i].value;
         appDate.optionalExpenses[i] = opt;
         optionalexpensesValue.textContent += appDate.optionalExpenses[i] + ' ';
+    }    
+} else {
+    optionalexpensesValue.textContent = '';
+}
 
-
-    }
 });
 
 countBtn.addEventListener('click', function () {
