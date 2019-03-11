@@ -36,7 +36,7 @@ function checkInputData (incomingArr) {
     }
     return false;
 }
-
+//------------------------------------------------------------
 Btnstart.addEventListener('click', function () {
     time = prompt('Введите дату в формате YYYY-MM-DD', '');
     money = +prompt("Ваш бюджет на месяц", '');
@@ -55,19 +55,27 @@ Btnstart.addEventListener('click', function () {
     countBtn.disablet = false;
 
 });
+//-------------------------------------------------------------
 
 expensesBtn.addEventListener('click', function () {
     if (checkInputData(expensesItem) == false) {
          let sum = 0;
+        let wer = 0;
     for (let i = 0; i < expensesItem.length; i++) {
         let a = expensesItem[i].value,
             b = expensesItem[++i].value;
 
         if ((typeof (a)) === 'string' && (typeof (a)) != null && (typeof (b)) != null &&
-            a != '' && b != '' && a.length < 50) {
+            a != '' && b != '' && a.length < 50 && i == 3) {
             console.log("done");
             appDate.expenses[a] = b;
             sum += +b;
+            
+            wer = sum + money;
+             ui = wer / 30 ;
+           
+             console.log(ui +' это бюджет на день!');
+             alert(ui +' это бюджет на день!');
         } else {
             i = i - 1;
         }
@@ -152,6 +160,8 @@ persentValue.addEventListener('input', function() {
       }
 });
 
+  
+
 let appDate = {
     budget: money,
     expenses: {},
@@ -160,3 +170,4 @@ let appDate = {
     timeDate: time,
     savings: false,
 }; /**/
+
