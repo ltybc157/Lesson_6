@@ -71,7 +71,7 @@ expensesBtn.addEventListener('click', function () {
             appDate.expenses[a] = b;
             sum += +b;
             
-            wer = sum + money;
+            wer = sum - money;
              ui = wer / 30 ;
            
              console.log(ui +' это бюджет на день!');
