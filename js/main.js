@@ -66,12 +66,12 @@ expensesBtn.addEventListener('click', function () {
             b = expensesItem[++i].value;
 
         if ((typeof (a)) === 'string' && (typeof (a)) != null && (typeof (b)) != null &&
-            a != '' && b != '' && a.length < 50 && i == 3) {
+            a != '' && b != '' && a.length < 50) {
             console.log("done");
             appDate.expenses[a] = b;
             sum += +b;
             
-            wer = sum - money;
+            wer =   money - sum;
              ui = wer / 30 ;
            
              console.log(ui +' это бюджет на день!');
